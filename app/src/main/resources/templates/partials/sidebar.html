@@ -1,0 +1,43 @@
+<div th:fragment="sidebar">
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar-backdrop" aria-hidden="true"></div>
+
+<nav class="sidebar" id="appSidebar">
+
+    <a class="items" th:classappend="${active_page == 'dashboard'} ? 'active' : ''"
+       th:href="@{/}">
+
+        <img th:src="@{/assets/sidebar/home.png}" alt="">
+
+        Dashboard
+
+    </a>
+
+    <a class="items" th:classappend="${active_page == 'update_inventory'} ? 'active' : ''"
+       th:href="@{/update_inventory}">
+
+        <img th:src="@{/assets/sidebar/update.png}" alt="">
+
+        Update Inventory
+
+    </a>
+
+    <a class="items" th:classappend="${active_page == 'transactions'} ? 'active' : ''"
+       th:href="@{/transactions}">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/>
+            <rect x="8" y="1.5" width="8" height="4" rx="1"/>
+            <path d="M8.5 12h7"/>
+            <path d="M8.5 16h4.5"/>
+            <path d="M8.5 8h7"/>
+        </svg>
+
+        Transaction History
+
+    </a>
+
+</nav>
+
+</div>

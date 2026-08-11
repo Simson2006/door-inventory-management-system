@@ -1,0 +1,36 @@
+:root {
+
+    --sidebar-width: clamp(120px, 18vw, 220px);
+    --topbar-height: 80px;
+    --main-content-padding: 20px;
+    --yellow: #F5CB50;
+    --green: #0E4A28;
+    --brown: #B26C45;
+    --white: #ffffff;
+    --bg: #f5f5f5;
+
+    /* =========================
+       Fonts
+    ========================= */
+    --profile-heading-font: "Libre Baskerville", serif;
+    --section-title-font: Georgia, "Times New Roman", serif;
+
+    /* =========================
+       Border Radius
+    ========================= */
+    --card-radius: 15px;
+    --box-radius: 8px;
+    --badge-radius: 14px;
+
+    /* =========================
+       Shadow
+    ========================= */
+    --card-shadow: 0 4px 12px rgba(0,0,0,.08);
+
+    /* =========================
+       Common Spacing
+    ========================= */
+    --space-xs: 5px;
+    --space-sm: 10px;
+    --space-md: 20px;
+}

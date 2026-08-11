@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="icon" th:href="@{/assets/sidebar/cmp_logo.png}">
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/topbar.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+</head>
+<body>
+    <div th:replace="~{partials/topbar :: topbar}"></div>
+    <div th:replace="~{partials/sidebar :: sidebar}"></div>
+    <main class="main-content">
+<div class="content">
+
+    <div class="profile-card">
+
+        <div class="profile-card-title">
+            <img th:src="@{/assets/profile/icon_profile.png}" alt="Profile">
+            <h2>My Profile</h2>
+        </div>
+
+        <div class="profile-info">
+
+            <!-- ===== CARD 1 — Avatar ===== -->
+            <div class="card1">
+                <img th:src="@{/assets/profile/profile-avatar.png}" alt="Profile">
+                <div class="card1-text">
+                    <h2 class="name">SIMBU I</h2>
+                    <span class="role-name">Manager</span>
+                </div>
+            </div>
+
+            <!-- ===== CARD 2 — Username, Email, Mobile, Date ===== -->
+            <div class="card2">
+
+                <div class="item">
+                    <img th:src="@{/assets/profile/icon_username.png}" alt="Username">
+                    <div class="card2-text">
+                        <h3 class="field">Username</h3>
+                        <h4 class="value">simbu_k</h4>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img th:src="@{/assets/profile/icon_email.png}" alt="Email">
+                    <div class="card2-text">
+                        <h3 class="field">Email</h3>
+                        <h4 class="value">simbu.k@mail.com</h4>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img th:src="@{/assets/profile/icon_phone.png}" alt="Mobile">
+                    <div class="card2-text">
+                        <h3 class="field">Mobile Number</h3>
+                        <h4 class="value">+91 9876543210</h4>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img th:src="@{/assets/profile/icon_date.png}" alt="Date">
+                    <div class="card2-text">
+                        <h3 class="field">Date Joined</h3>
+                        <h4 class="value">01 Jan 2024</h4>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== CARD 3 — Last Login, Password, Status ===== -->
+            <div class="card3">
+
+                <div class="item">
+                    <img th:src="@{/assets/profile/icon_login.png}" alt="Last Login">
+                    <div class="card2-text">
+                        <h3 class="field">Last Login</h3>
+                        <h4 class="value">02 Jul 2026 11:20 AM</h4>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img th:src="@{/assets/profile/icon_pass.png}" alt="Password">
+                    <div class="card2-text">
+                        <h3 class="field">Password Last Changed</h3>
+                        <h4 class="value">20 Jun 2026</h4>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img th:src="@{/assets/profile/icon_active.png}" alt="Status">
+                    <div class="card2-text">
+                        <h3 class="field">Account Status</h3>
+                        <h4 class="value status-active">Active</h4>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===== BOTTOM BUTTONS ===== -->
+        <div class="profile-actions">
+
+            <div class="actions-left">
+
+                <button class="btn-action">
+                    <img th:src="@{/assets/profile/icon_chg_name.png}" alt="Edit">
+                    Change Username
+                </button>
+
+                <button class="btn-action">
+                    <img th:src="@{/assets/profile/icon_pass.png}" alt="Password">
+                    Change Password
+                </button>
+
+            </div>
+
+            <div class="actions-right">
+
+                <button class="btn-logout">
+                    <img th:src="@{/assets/profile/icon_logout.png}" alt="Logout">
+                    Logout
+                </button>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== REQUEST CARD ===== -->
+    <div class="request-card">
+
+        <div class="request-card-title">
+            <img th:src="@{/assets/profile/icon_request.png}" alt="Requests" >
+            <h2>Approval Requests</h2>
+            <span class="request-count">5</span>
+        </div>
+
+        <div class="request-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Requested On</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Simson</td>
+                        <td>simsonantorai2006@gmail.com</td>
+                        <td>02 Jul 2026 10:15 AM</td>
+                        <td class="action-btns">
+                            <button class="btn-approve">✓</button>
+                            <button class="btn-reject">✗</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+    </main>
+    <script th:src="@{/js/sidebar.js}" defer></script>
+    
+</body>
+</html>

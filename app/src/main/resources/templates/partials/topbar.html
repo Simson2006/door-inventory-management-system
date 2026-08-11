@@ -1,0 +1,42 @@
+<div th:fragment="topbar">
+    <!-- ================= TOP BAR ================= -->
+
+    <header class="topbar">
+
+        <div class="logo-section">
+            <button
+                class="sidebar-toggle"
+                type="button"
+                aria-label="Open sidebar"
+                aria-controls="appSidebar"
+                aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <img th:src="@{/assets/sidebar/cmp_logo.png}" alt="Company Logo">
+        </div>
+
+        <div class="title-section">
+
+            <h1 th:text="${page_title ?: 'Inventory'}">Inventory</h1>
+
+            <div class="title-line">
+                <span class="yellow"></span>
+                <span class="brown"></span>
+            </div>
+
+        </div>
+
+        <div class="profile-section">
+
+            <a th:href="@{/profile}">
+                <img th:src="@{/assets/sidebar/profile.png}" alt="Profile">
+            </a>
+
+        </div>
+
+    </header>
+
+</div>
