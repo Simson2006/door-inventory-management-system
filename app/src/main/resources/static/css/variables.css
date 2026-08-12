@@ -1,36 +1,31 @@
+/* =========================================================
+   GLOBAL CSS VARIABLES
+   Shared design tokens used across every stylesheet.
+   Reconstructed file — this was missing from the project;
+   tweak any value below to match your original design.
+========================================================= */
+
 :root {
-
-    --sidebar-width: clamp(120px, 18vw, 220px);
-    --topbar-height: 80px;
-    --main-content-padding: 20px;
-    --yellow: #F5CB50;
-    --green: #0E4A28;
-    --brown: #B26C45;
+    /* Colors */
+    --bg: #f5f6f8;
     --white: #ffffff;
-    --bg: #f5f5f5;
+    --green: #2f6a4c;
+    --yellow: #d9a441;
+    --brown: #8b5e3c;
 
-    /* =========================
-       Fonts
-    ========================= */
-    --profile-heading-font: "Libre Baskerville", serif;
-    --section-title-font: Georgia, "Times New Roman", serif;
+    /* Layout */
+    --sidebar-width: 260px;
+    --topbar-height: 90px;
+    --main-content-padding: 30px;
 
-    /* =========================
-       Border Radius
-    ========================= */
-    --card-radius: 15px;
-    --box-radius: 8px;
-    --badge-radius: 14px;
+    /* Shape */
+    --card-radius: 12px;
+    --box-radius: 10px;
+    --badge-radius: 20px;
 
-    /* =========================
-       Shadow
-    ========================= */
-    --card-shadow: 0 4px 12px rgba(0,0,0,.08);
+    /* Effects */
+    --card-shadow: 0 2px 10px rgba(0, 0, 0, .06);
 
-    /* =========================
-       Common Spacing
-    ========================= */
-    --space-xs: 5px;
-    --space-sm: 10px;
-    --space-md: 20px;
+    /* Typography */
+    --section-title-font: 'Poppins', Arial, sans-serif;
 }
