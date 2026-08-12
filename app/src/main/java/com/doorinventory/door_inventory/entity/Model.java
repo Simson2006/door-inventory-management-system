@@ -9,9 +9,9 @@ import jakarta.persistence.Column;
 import lombok.Data;
 
 @Entity
-@Table(name="models")
+@Table(name="model")
 @Data
-public class models{
+public class Model{
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)

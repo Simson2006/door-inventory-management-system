@@ -11,34 +11,41 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "userprofile")
 @Data
-public class users{
+public class UserProfile {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @Column(nullable = false, length = 25,unique = true)
+    @Column(name = "userName", nullable = false, length = 25, unique = true)
     private String userName;
-    @Column(nullable = false, length = 255)
-    private String passwordHash;  
-    @Column(length = 13)
+
+    @Column(name = "passwordHash", nullable = false, length = 255)
+    private String passwordHash;
+
+    @Column(name = "mobileNumber", length = 13)
     private String mobileNumber;
 
     @Column(name = "dateJoined")
-    private LocalDate dateJoined=LocalDate.now();
+    private LocalDate dateJoined = LocalDate.now();
+
     @Column(name = "lastLogin")
-    private LocalDateTime lastLogin;    
+    private LocalDateTime lastLogin;
+
     @Column(name = "passwordLastChanged")
     private LocalDate passwordLastChanged;
-    @Column(name = "accountStatus", length = 20,nullable = false)
-    private String accountStatus="ACTIVE";
-    @Column(length = 50, unique = true,nullable = false)
-    private String email;   
-    @Column(name = "userRole", length = 20,nullable = false)
-    private String userRole="STAFF";
-}
 
+    @Column(name = "accountStatus", length = 20, nullable = false)
+    private String accountStatus = "ACTIVE";
+
+    @Column(name = "email", length = 50, unique = true, nullable = false)
+    private String email;
+
+    @Column(name = "userRole", length = 20, nullable = false)
+    private String userRole = "STAFF";
+}
 /* CREATE TABLE users (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     userName VARCHAR(25) UNIQUE NOT NULL,

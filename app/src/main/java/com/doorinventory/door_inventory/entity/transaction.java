@@ -1,14 +1,14 @@
 package com.doorinventory.door_inventory.entity;
 
-import com.doorinventory.door_inventory.entity.enums.transactionType;
+import com.doorinventory.door_inventory.entity.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "transactions")
+@Table(name = "transaction")
 @Data
-public class transaction{
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class transaction{
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private transactionType type;
+    private TransactionType type;
 
     @Column(nullable = false, length = 100)
     private String name;

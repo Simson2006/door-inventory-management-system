@@ -9,9 +9,9 @@ import jakarta.persistence.Column;
 import lombok.Data;
 
 @Entity
-@Table(name="dimensions")
+@Table(name="dimension")
 @Data
-public class dimensions {
+public class Dimension {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

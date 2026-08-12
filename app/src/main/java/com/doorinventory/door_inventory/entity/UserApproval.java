@@ -10,9 +10,9 @@ import jakarta.persistence.Column;
 import lombok.Data;
 import java.time.LocalDateTime;
 @Entity
-@Table(name = "userapprovals")
+@Table(name = "userapproval")
 @Data
-public class userapprovals {
+public class UserApproval{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class userapprovals {
 
     @ManyToOne
     @JoinColumn(name="userId",referencedColumnName = "id")
-    private users user;
+    private UserProfile user;
 }
 
 
