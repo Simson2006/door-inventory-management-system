@@ -216,7 +216,9 @@
                     <div class="actions-left">
 
                         <!-- Change Username -->
-                        <button class="btn-action" id="btnChangeUsername" type="button">
+                        <button class="btn-action"
+                                id="btnChangeUsername"
+                                type="button">
 
                             <img th:src="@{/assets/profile/icon_chg_name.png}"
                                  alt="Edit">
@@ -227,7 +229,9 @@
 
 
                         <!-- Change Password -->
-                        <button class="btn-action" id="btnChangePassword" type="button">
+                        <button class="btn-action"
+                                id="btnChangePassword"
+                                type="button">
 
                             <img th:src="@{/assets/profile/icon_pass.png}"
                                  alt="Password">
@@ -242,7 +246,9 @@
                     <div class="actions-right">
 
                         <!-- Logout -->
-                        <button class="btn-logout" id="btnLogout" type="button">
+                        <button class="btn-logout"
+                                id="btnLogout"
+                                type="button">
 
                             <img th:src="@{/assets/profile/icon_logout.png}"
                                  alt="Logout">
@@ -258,25 +264,50 @@
             </div>
 
 
-            <!-- ================= REQUEST CARD ================= -->
+            <!-- ================= REQUEST / USERS CARD ================= -->
 
             <div class="request-card">
 
-                <!-- Request Header -->
+                <!-- Section Header / Tabs -->
                 <div class="request-card-title">
 
                     <img th:src="@{/assets/profile/icon_request.png}"
                          alt="Requests">
 
-                    <h2>Approval Requests</h2>
+                    <div class="section-tabs" role="tablist">
 
-                    <span class="request-count">5</span>
+                        <button type="button"
+                                class="tab-btn active"
+                                id="tabRequests"
+                                data-section="requests"
+                                role="tab"
+                                aria-selected="true">
+
+                            Approval Requests
+                            <span class="request-count" id="requestsCount">0</span>
+
+                        </button>
+
+                        <button type="button"
+                                class="tab-btn"
+                                id="tabUsers"
+                                data-section="users"
+                                role="tab"
+                                aria-selected="false">
+
+                            Approved Users
+                            <span class="request-count" id="usersCount">0</span>
+
+                        </button>
+
+                    </div>
 
                 </div>
 
 
-                <!-- Request Table -->
-                <div class="request-table">
+                <!-- Approval Requests Table -->
+                <div class="request-table"
+                     id="requestsSection">
 
                     <table>
 
@@ -295,41 +326,61 @@
                         </thead>
 
 
-                        <tbody>
-
-                            <!-- Dummy data for now -->
-                            <tr>
-
-                                <td>1</td>
-
-                                <td>Simson</td>
-
-                                <td>
-                                    simsonantorai2006@gmail.com
-                                </td>
-
-                                <td>
-                                    02 Jul 2026 10:15 AM
-                                </td>
-
-                                <td class="action-btns">
-
-                                    <button class="btn-approve">
-                                        ✓
-                                    </button>
-
-                                    <button class="btn-reject">
-                                        ✗
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
+                        <tbody id="requestsTableBody">
                         </tbody>
 
                     </table>
 
+                    <p class="table-empty"
+                       id="requestsEmpty"
+                       hidden>
+                        No pending approval requests.
+                    </p>
+
+                </div>
+
+
+                <!-- Approved Users Table -->
+                <div class="request-table"
+                     id="usersSection"
+                     hidden>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Mobile Number</th>
+                                <th>Last Login</th>
+                                <th>Account Status</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="usersTableBody">
+                        </tbody>
+
+                    </table>
+
+                    <p class="table-empty"
+                       id="usersEmpty"
+                       hidden>
+                        No approved users found.
+                    </p>
+
+                </div>
+
+
+                <!-- Shared Pagination (reused by whichever section is active) -->
+                <div class="pagination"
+                     id="pagination">
                 </div>
 
             </div>
@@ -347,22 +398,62 @@
 
     <div id="overlay" class="overlay"></div>
 
-    <div id="popup" class="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-hidden="true">
+
+    <div id="popup"
+         class="popup"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="popupTitle"
+         aria-hidden="true">
 
         <div class="popup-header">
+
             <h2 id="popupTitle">Profile</h2>
-            <button class="close-btn" type="button" data-modal-close aria-label="Close dialog">&times;</button>
+
+            <button class="close-btn"
+                    type="button"
+                    data-modal-close
+                    aria-label="Close dialog">
+
+                &times;
+
+            </button>
+
         </div>
 
-        <p class="popup-description" id="popupDescription" hidden></p>
+
+        <p class="popup-description"
+           id="popupDescription"
+           hidden>
+        </p>
+
 
         <form id="popupForm" novalidate>
 
-            <div class="popup-fields" id="popupFields"></div>
+            <div class="popup-fields"
+                 id="popupFields">
+            </div>
+
 
             <div class="popup-buttons">
-                <button type="button" class="cancel" data-modal-close>Cancel</button>
-                <button type="submit" class="save" id="popupSubmit">Save</button>
+
+                <button type="button"
+                        class="cancel"
+                        data-modal-close>
+
+                    Cancel
+
+                </button>
+
+
+                <button type="submit"
+                        class="save"
+                        id="popupSubmit">
+
+                    Save
+
+                </button>
+
             </div>
 
         </form>
@@ -371,8 +462,11 @@
 
 
     <!-- JavaScript -->
+
     <script th:src="@{/js/sidebar.js}" defer></script>
+
     <script th:src="@{/js/modal.js}" defer></script>
+
     <script th:src="@{/js/profile.js}" defer></script>
 
 </body>

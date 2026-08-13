@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <link rel="icon" th:href="@{/assets/sidebar/cmp_logo.png}">
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/topbar.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/transactions.css}">
+</head>
+<body>
+    <div th:replace="~{partials/topbar :: topbar}"></div>
+    <div th:replace="~{partials/sidebar :: sidebar}"></div>
+    <main class="main-content">
+<div class="transactions-page">
+
+    <p class="last-updated">🕒 Every stock purchase and sale recorded from the Update Inventory page</p>
+
+    <!-- ================= FILTER BAR ================= -->
+
+    <div class="tx-filters">
+
+        <div class="tx-filter tx-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="m20 20-3.5-3.5"/>
+            </svg>
+            <input type="text" id="txSearch" placeholder="Search by name, mobile or notes">
+        </div>
+
+        <div class="tx-filter">
+            <label for="txType">Type</label>
+            <select id="txType">
+                <option value="all">All</option>
+                <option value="purchase">Purchase</option>
+                <option value="sale">Sale</option>
+            </select>
+        </div>
+
+        <div class="tx-filter">
+            <label for="txModel">Model</label>
+            <select id="txModel">
+                <option value="all">All Models</option>
+            </select>
+        </div>
+
+        <div class="tx-filter">
+            <label for="txFrom">From</label>
+            <input type="date" id="txFrom">
+        </div>
+
+        <div class="tx-filter">
+            <label for="txTo">To</label>
+            <input type="date" id="txTo">
+        </div>
+
+        <button type="button" id="txClear" class="tx-clear-btn">Clear Filters</button>
+
+    </div>
+
+    <!-- ================= TABLE ================= -->
+
+    <div class="table-card tx-table-card">
+
+        <div class="table-card-title tx-table-title">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#0E4A28" stroke-width="1.8">
+                <path d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/>
+                <rect x="8" y="1.5" width="8" height="4" rx="1"/>
+                <path d="M8.5 12h7"/>
+                <path d="M8.5 16h4.5"/>
+                <path d="M8.5 8h7"/>
+            </svg>
+            <h3>All Transactions</h3>
+            <span class="tx-count" id="txCount"></span>
+        </div>
+
+        <div class="tx-table-scroll">
+            <table class="tx-table" id="txTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Person Name</th>
+                        <th>Mobile Number</th>
+                        <th>Model</th>
+                        <th>Dimension</th>
+                        <th>Grade</th>
+                        <th>Quantity</th>
+                        <th>Bill ID</th>
+                        <th>Date</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="txTableBody">
+                    <!-- rows rendered by transactions.js -->
+                </tbody>
+            </table>
+        </div>
+
+        <p class="tx-empty" id="txEmpty" hidden>No transactions match your filters.</p>
+
+    </div>
+
+</div>
+    </main>
+    <script th:src="@{/js/sidebar.js}" defer></script>
+    <script th:src="@{/js/inventory-data.js}"></script>
+<script th:src="@{/js/transactions.js}"></script>
+</body>
+</html>

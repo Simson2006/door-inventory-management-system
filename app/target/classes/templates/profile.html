@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+
+    <link rel="icon" th:href="@{/assets/sidebar/cmp_logo.png}">
+
+    <link rel="stylesheet" th:href="@{/css/variables.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/topbar.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Poppins:wght@500&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+</head>
+
+<body>
+
+    <!-- Topbar -->
+    <div th:replace="~{partials/topbar :: topbar}"></div>
+
+    <!-- Sidebar -->
+    <div th:replace="~{partials/sidebar :: sidebar}"></div>
+
+
+    <main class="main-content">
+
+        <div class="content">
+
+            <!-- ================= PROFILE CARD ================= -->
+
+            <div class="profile-card">
+
+                <!-- Profile Title -->
+                <div class="profile-card-title">
+                    <img th:src="@{/assets/profile/icon_profile.png}" alt="Profile">
+                    <h2>My Profile</h2>
+                </div>
+
+
+                <div class="profile-info">
+
+                    <!-- ================= CARD 1 — PROFILE ================= -->
+
+                    <div class="card1">
+
+                        <img th:src="@{/assets/profile/profile-avatar.png}"
+                             alt="Profile">
+
+                        <div class="card1-text">
+
+                            <!-- Filled by profile.js -->
+                            <h2 class="name">Loading...</h2>
+
+                            <!-- Filled by profile.js -->
+                            <span class="role-name">Loading...</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= CARD 2 ================= -->
+                    <!-- Username, Email, Mobile, Date -->
+
+                    <div class="card2">
+
+                        <!-- Username -->
+                        <div class="item">
+
+                            <img th:src="@{/assets/profile/icon_username.png}"
+                                 alt="Username">
+
+                            <div class="card2-text">
+
+                                <h3 class="field">Username</h3>
+
+                                <!-- values[0] -->
+                                <h4 class="value">Loading...</h4>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="item">
+
+                            <img th:src="@{/assets/profile/icon_email.png}"
+                                 alt="Email">
+
+                            <div class="card2-text">
+
+                                <h3 class="field">Email</h3>
+
+                                <!-- values[1] -->
+                                <h4 class="value">Loading...</h4>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Mobile Number -->
+                        <div class="item">
+
+                            <img th:src="@{/assets/profile/icon_phone.png}"
+                                 alt="Mobile">
+
+                            <div class="card2-text">
+
+                                <h3 class="field">Mobile Number</h3>
+
+                                <!-- values[2] -->
+                                <h4 class="value">Loading...</h4>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Date Joined -->
+                        <div class="item">
+
+                            <img th:src="@{/assets/profile/icon_date.png}"
+                                 alt="Date">
+
+                            <div class="card2-text">
+
+                                <h3 class="field">Date Joined</h3>
+
+                                <!-- values[3] -->
+                                <h4 class="value">Loading...</h4>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= CARD 3 ================= -->
+                    <!-- Last Login, Password, Status -->
+
+                    <div class="card3">
+
+                        <!-- Last Login -->
+                        <div class="item">
+
+                            <img th:src="@{/assets/profile/icon_login.png}"
+                                 alt="Last Login">
+
+                            <div class="card2-text">
+
+                                <h3 class="field">Last Login</h3>
+
+                                <!-- values[4] -->
+                                <h4 class="value">Loading...</h4>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Password Last Changed -->
+                        <div class="item">
+
+                            <img th:src="@{/assets/profile/icon_pass.png}"
+                                 alt="Password">
+
+                            <div class="card2-text">
+
+                                <h3 class="field">Password Last Changed</h3>
+
+                                <!-- values[5] -->
+                                <h4 class="value">Loading...</h4>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Account Status -->
+                        <div class="item">
+
+                            <img th:src="@{/assets/profile/icon_active.png}"
+                                 alt="Status">
+
+                            <div class="card2-text">
+
+                                <h3 class="field">Account Status</h3>
+
+                                <!-- values[6] -->
+                                <h4 class="value status-active">Loading...</h4>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= BOTTOM BUTTONS ================= -->
+
+                <div class="profile-actions">
+
+                    <div class="actions-left">
+
+                        <!-- Change Username -->
+                        <button class="btn-action"
+                                id="btnChangeUsername"
+                                type="button">
+
+                            <img th:src="@{/assets/profile/icon_chg_name.png}"
+                                 alt="Edit">
+
+                            Change Username
+
+                        </button>
+
+
+                        <!-- Change Password -->
+                        <button class="btn-action"
+                                id="btnChangePassword"
+                                type="button">
+
+                            <img th:src="@{/assets/profile/icon_pass.png}"
+                                 alt="Password">
+
+                            Change Password
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="actions-right">
+
+                        <!-- Logout -->
+                        <button class="btn-logout"
+                                id="btnLogout"
+                                type="button">
+
+                            <img th:src="@{/assets/profile/icon_logout.png}"
+                                 alt="Logout">
+
+                            Logout
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= REQUEST / USERS CARD ================= -->
+
+            <div class="request-card">
+
+                <!-- Section Header / Tabs -->
+                <div class="request-card-title">
+
+                    <img th:src="@{/assets/profile/icon_request.png}"
+                         alt="Requests">
+
+                    <div class="section-tabs" role="tablist">
+
+                        <button type="button"
+                                class="tab-btn active"
+                                id="tabRequests"
+                                data-section="requests"
+                                role="tab"
+                                aria-selected="true">
+
+                            Approval Requests
+                            <span class="request-count" id="requestsCount">0</span>
+
+                        </button>
+
+                        <button type="button"
+                                class="tab-btn"
+                                id="tabUsers"
+                                data-section="users"
+                                role="tab"
+                                aria-selected="false">
+
+                            Approved Users
+                            <span class="request-count" id="usersCount">0</span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Approval Requests Table -->
+                <div class="request-table"
+                     id="requestsSection">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Requested On</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="requestsTableBody">
+                        </tbody>
+
+                    </table>
+
+                    <p class="table-empty"
+                       id="requestsEmpty"
+                       hidden>
+                        No pending approval requests.
+                    </p>
+
+                </div>
+
+
+                <!-- Approved Users Table -->
+                <div class="request-table"
+                     id="usersSection"
+                     hidden>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Mobile Number</th>
+                                <th>Last Login</th>
+                                <th>Account Status</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="usersTableBody">
+                        </tbody>
+
+                    </table>
+
+                    <p class="table-empty"
+                       id="usersEmpty"
+                       hidden>
+                        No approved users found.
+                    </p>
+
+                </div>
+
+
+                <!-- Shared Pagination (reused by whichever section is active) -->
+                <div class="pagination"
+                     id="pagination">
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         REUSABLE MODAL — one shell, reused by Change Username,
+         Change Password and Logout. profile.js fills #popupFields
+         with the right inputs for whichever action was clicked.
+    ========================================================= -->
+
+    <div id="overlay" class="overlay"></div>
+
+
+    <div id="popup"
+         class="popup"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="popupTitle"
+         aria-hidden="true">
+
+        <div class="popup-header">
+
+            <h2 id="popupTitle">Profile</h2>
+
+            <button class="close-btn"
+                    type="button"
+                    data-modal-close
+                    aria-label="Close dialog">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <p class="popup-description"
+           id="popupDescription"
+           hidden>
+        </p>
+
+
+        <form id="popupForm" novalidate>
+
+            <div class="popup-fields"
+                 id="popupFields">
+            </div>
+
+
+            <div class="popup-buttons">
+
+                <button type="button"
+                        class="cancel"
+                        data-modal-close>
+
+                    Cancel
+
+                </button>
+
+
+                <button type="submit"
+                        class="save"
+                        id="popupSubmit">
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script th:src="@{/js/sidebar.js}" defer></script>
+
+    <script th:src="@{/js/modal.js}" defer></script>
+
+    <script th:src="@{/js/profile.js}" defer></script>
+
+</body>
+
+</html>

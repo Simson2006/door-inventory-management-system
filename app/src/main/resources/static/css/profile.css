@@ -281,6 +281,167 @@
    Request Card
 ========================= */
 
+.section-tabs{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    min-width:0;
+}
+
+.tab-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:none;
+    background:transparent;
+    color:#8a8a8a;
+    font-family:var(--section-title-font);
+    font-size:1.0625rem;
+    line-height:1.2;
+    padding:4px 2px 8px;
+    border-bottom:2.5px solid transparent;
+    cursor:pointer;
+    transition:.2s;
+    white-space:nowrap;
+}
+
+.tab-btn:hover{
+    color:var(--brown);
+}
+
+.tab-btn.active{
+    color:var(--brown);
+    border-bottom-color:var(--brown);
+}
+
+.tab-btn .request-count{
+    background:var(--yellow);
+}
+
+.tab-btn:not(.active) .request-count{
+    background:#e6e6e6;
+    color:#666;
+}
+
+.table-empty{
+    margin:18px 0;
+    text-align:center;
+    color:#888;
+    font-family:'Poppins', sans-serif;
+    font-size:.8125rem;
+}
+
+.status-pill{
+    display:inline-block;
+    width:fit-content;
+    border-radius:var(--badge-radius);
+    padding:3px 12px;
+    font-family:'Poppins', sans-serif;
+    font-size:.75rem;
+    white-space:nowrap;
+}
+
+.status-pill.status-ACTIVE{
+    background:#e8f5e9;
+    color:#2e7d32;
+    border:1px solid #a5d6a7;
+}
+
+.status-pill.status-SUSPENDED{
+    background:#fdecea;
+    color:#c0392b;
+    border:1px solid #f1a9a0;
+}
+
+.btn-status{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:30px;
+    padding:5px 12px;
+    border-radius:6px;
+    border:1.5px solid;
+    background:transparent;
+    font-family:'Poppins', sans-serif;
+    font-size:.75rem;
+    font-weight:500;
+    cursor:pointer;
+    transition:.2s;
+    white-space:nowrap;
+}
+
+.btn-status.suspend{
+    border-color:#c0392b;
+    color:#c0392b;
+}
+
+.btn-status.suspend:hover{
+    background:#c0392b;
+    color:white;
+}
+
+.btn-status.activate{
+    border-color:#2e7d32;
+    color:#2e7d32;
+}
+
+.btn-status.activate:hover{
+    background:#2e7d32;
+    color:white;
+}
+
+/* =========================
+   Pagination
+========================= */
+
+.pagination{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    flex-wrap:wrap;
+    padding-top:6px;
+}
+
+.pagination:empty{
+    display:none;
+}
+
+.page-btn{
+    min-width:30px;
+    height:30px;
+    padding:0 8px;
+    border:1.5px solid #e6e6e6;
+    border-radius:6px;
+    background:var(--white);
+    color:var(--brown);
+    font-family:'Poppins', sans-serif;
+    font-size:.75rem;
+    font-weight:500;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.page-btn:hover:not(:disabled):not(.active){
+    border-color:var(--brown);
+}
+
+.page-btn.active{
+    background:var(--brown);
+    border-color:var(--brown);
+    color:white;
+}
+
+.page-btn:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
+.page-btn.nav{
+    font-weight:700;
+}
+
 .request-count{
     background:var(--yellow);
     color:#333;
@@ -578,8 +739,20 @@ td:last-child{
         margin-left:auto;
     }
 
+    .section-tabs{
+        gap:14px;
+    }
+
+    .tab-btn{
+        font-size:.9375rem;
+    }
+
     table{
         min-width:560px;
+    }
+
+    #usersSection table{
+        min-width:680px;
     }
 
     th,

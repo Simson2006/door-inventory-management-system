@@ -1,0 +1,31 @@
+/* =========================================================
+   BASE / RESET
+   Global resets and the page-content shell shared by every
+   page. Component-specific styling lives in its own file:
+   topbar.css, sidebar.css, home.css, profile.css,
+   update_inventory.css
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    overflow-x: hidden;
+}
+
+/* ==========================
+        CONTENT SHELL
+========================== */
+
+.main-content {
+    margin-left: 0;
+    margin-top: var(--topbar-height);
+    padding: var(--main-content-padding);
+    height: calc(100vh - var(--topbar-height));
+    width: 100%;
+}

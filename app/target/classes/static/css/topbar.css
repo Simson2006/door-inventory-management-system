@@ -1,0 +1,311 @@
+/* ==========================
+        TOP BAR
+========================== */
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: var(--topbar-height);
+
+    background: var(--white);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 25px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+
+    z-index: 1000;
+}
+
+/* Logo */
+
+.logo-section {
+    width: var(--sidebar-width);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-section img {
+    width: 150px;
+    height: auto;
+}
+
+.sidebar-toggle {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.sidebar-toggle:hover {
+    transform: scale(1.08);
+}
+
+.sidebar-toggle span {
+    width: 18px;
+    height: 2px;
+    border-radius: 20px;
+    background: #fff;
+    transition: .3s;
+}
+
+body.sidebar-open .sidebar-toggle span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+body.sidebar-open .sidebar-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+body.sidebar-open .sidebar-toggle span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Title */
+
+.title-section {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-section h1 {
+    color: var(--green);
+    font-size: 38px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.title-line {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.yellow,
+.brown {
+    width: 36px;
+    height: 4px;
+    border-radius: 20px;
+}
+
+.yellow {
+    background: var(--yellow);
+}
+
+.brown {
+    background: var(--brown);
+}
+
+/* Profile */
+
+.profile-section {
+    width: var(--sidebar-width);
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profile-section a {
+    width: 42px;
+    height: 42px;
+
+    background: var(--green);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .3s;
+}
+
+.profile-section a:hover {
+    transform: scale(1.08);
+}
+
+.profile-section img {
+    width: 28px;
+}
+
+/* ==========================
+        LAPTOP
+========================== */
+
+@media (max-width: 1200px) {
+
+    .logo-section {
+        width: 200px;
+    }
+
+    .profile-section {
+        width: 200px;
+    }
+
+    .logo-section img {
+        width: 135px;
+    }
+
+    .title-section h1 {
+        font-size: 34px;
+    }
+}
+
+/* ==========================
+        TABLET
+========================== */
+
+@media (max-width: 768px) {
+
+    :root {
+        --sidebar-width: 180px;
+        --topbar-height: 70px;
+        --main-content-padding: 10px;
+    }
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .logo-section {
+        width: 165px;
+        gap: 10px;
+    }
+
+    .profile-section {
+        width: 165px;
+    }
+
+    .logo-section img {
+        width: 105px;
+    }
+
+    .title-section h1 {
+        font-size: 28px;
+    }
+
+    .profile-section a {
+        width: 38px;
+        height: 38px;
+    }
+
+    .sidebar-toggle {
+        width: 38px;
+        height: 38px;
+    }
+
+    .profile-section img {
+        width: 24px;
+    }
+}
+
+/* ==========================
+        MOBILE
+========================== */
+
+@media (max-width: 576px) {
+
+    :root {
+        --sidebar-width: 130px;
+        --topbar-height: 70px;
+        --main-content-padding: 15px;
+    }
+
+    .logo-section {
+        width: 132px;
+        gap: 8px;
+    }
+
+    .profile-section {
+        width: 132px;
+    }
+
+    .logo-section img {
+        width: 90px;
+    }
+
+    .title-section h1 {
+        font-size: 22px;
+    }
+
+    .yellow,
+    .brown {
+        width: 28px;
+        height: 3px;
+    }
+
+    .profile-section a {
+        width: 34px;
+        height: 34px;
+    }
+
+    .sidebar-toggle {
+        width: 34px;
+        height: 34px;
+    }
+
+    .sidebar-toggle span {
+        width: 15px;
+    }
+
+    .profile-section img {
+        width: 22px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .topbar {
+        padding: 0 10px;
+    }
+
+    .logo-section {
+        width: 108px;
+        gap: 6px;
+    }
+
+    .logo-section img {
+        width: 68px;
+    }
+
+    .title-section h1 {
+        font-size: 18px;
+    }
+
+    .yellow,
+    .brown {
+        width: 22px;
+    }
+
+    .profile-section {
+        width: 36px;
+    }
+
+    .profile-section a,
+    .sidebar-toggle {
+        width: 32px;
+        height: 32px;
+    }
+
+    .profile-section img {
+        width: 20px;
+    }
+}
