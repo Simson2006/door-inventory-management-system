@@ -3,9 +3,12 @@ com\doorinventory\door_inventory\entity\UserApproval.class
 com\doorinventory\door_inventory\entity\Grade.class
 com\doorinventory\door_inventory\DoorInventoryApplication.class
 com\doorinventory\door_inventory\entity\enums\TransactionType.class
+com\doorinventory\door_inventory\exception\UserNotFoundException.class
+com\doorinventory\door_inventory\exception\GlobalExceptionHandler.class
 com\doorinventory\door_inventory\entity\Model.class
 com\doorinventory\door_inventory\controller\UserProfileController.class
 com\doorinventory\door_inventory\entity\Inventory.class
+com\doorinventory\door_inventory\exception\AdminAccessDeniedException.class
 com\doorinventory\door_inventory\entity\UserProfile.class
 com\doorinventory\door_inventory\service\UserProfileService.class
 com\doorinventory\door_inventory\entity\Transaction.class

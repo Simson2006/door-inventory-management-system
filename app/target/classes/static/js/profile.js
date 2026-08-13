@@ -12,8 +12,8 @@ async function loadProfile() {
     try {
 
         // API URL
-        const profileApi = "/api/profile/1";
-
+        const profileApi = "/api/profile/5";
+        console.log("REQUESTING:","/api/profile/5");
         // Call backend
         const response = await fetch(profileApi);
 

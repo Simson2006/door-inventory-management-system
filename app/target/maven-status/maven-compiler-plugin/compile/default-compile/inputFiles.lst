@@ -8,6 +8,9 @@ D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\j
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\entity\Transaction.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\entity\UserApproval.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\entity\UserProfile.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\exception\AdminAccessDeniedException.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\exception\GlobalExceptionHandler.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\exception\UserNotFoundException.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\PageController.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\repository\UserProfileRepository.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\service\UserProfileService.java
