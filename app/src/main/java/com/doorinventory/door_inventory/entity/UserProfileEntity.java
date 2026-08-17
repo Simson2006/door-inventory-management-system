@@ -1,5 +1,8 @@
 package com.doorinventory.door_inventory.entity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import com.doorinventory.door_inventory.entity.enums.AccountStatusEnum;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,7 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "userprofile")
 @Data
-public class UserProfile {
+public class UserProfileEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +40,8 @@ public class UserProfile {
     @Column(name = "passwordLastChanged")
     private LocalDate passwordLastChanged;
 
-    @Column(name = "accountStatus", length = 20, nullable = false)
-    private String accountStatus = "ACTIVE";
+    @Enumerated(EnumType.STRING)
+    private AccountStatusEnum accountStatus;
 
     @Column(name = "email", length = 50, unique = true, nullable = false)
     private String email;

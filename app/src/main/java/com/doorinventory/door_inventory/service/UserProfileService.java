@@ -1,8 +1,10 @@
 package com.doorinventory.door_inventory.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import com.doorinventory.door_inventory.entity.enums.AccountStatusEnum;
 import com.doorinventory.door_inventory.repository.UserProfileRepository;
-import com.doorinventory.door_inventory.entity.UserProfile;
+import com.doorinventory.door_inventory.entity.UserProfileEntity;
 import com.doorinventory.door_inventory.exception.UserNotFoundException;
 import com.doorinventory.door_inventory.exception.AdminAccessDeniedException;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +21,7 @@ public class UserProfileService{
         this.userProfileRepository = userProfileRepository;
     }
 
-    public UserProfile getProfile(Long id) {
+    public UserProfileEntity getProfile(Long id) {
 
         log.info("fetching user profile,Userid={}",id);
         return userProfileRepository.findById(id)
@@ -29,24 +31,94 @@ public class UserProfileService{
         });
     }
 
-    public Page<UserProfile> getApprovedUser(Long id,Pageable pageable) {
+    private void checkAdmin(Long adminId) {
 
-        log.info("fetching approved users table data by,Userid={}",id);
-        String isAdmin = userProfileRepository.findUserRoleById(id).
-            orElseThrow(() -> {
-            log.warn("User Profile Not Found, UserId={}", id);
-            return new UserNotFoundException("User Not Found");
-        });
-        if (!"ADMIN".equals(isAdmin))  {
-            log.warn("Admin Access Required,UserId={}",id);
-            throw new AdminAccessDeniedException("Admin Access Required");
+        String isAdmin = userProfileRepository.findUserRoleById(adminId)
+                .orElseThrow(() -> {
+                    log.warn("User Profile Not Found, UserId={}",adminId);
+                    return new UserNotFoundException("User Not Found");
+                });
+
+        if (!"ADMIN".equals(isAdmin)) {
+            log.warn("ADMIN Access Required, UserId={}", adminId);
+            throw new AdminAccessDeniedException("ADMIN Access Required");
         }
+    }
 
+    public Page<UserProfileEntity> getApprovedUser(Long adminId,Pageable pageable) {
+
+        log.info("fetching Approved Users Table Data by,Userid={}",adminId);
+        checkAdmin(adminId);
         return userProfileRepository.findByAccountStatusAndIdNot(
-                "ACTIVE",
-                id,
+                AccountStatusEnum.ACTIVE,
+                adminId,
                 pageable
         );
     }
+
+    public Page<UserProfileEntity>  getApprovalRequestUser(Long adminId,Pageable pageable)
+    {
+        log.info("fetching Approval Requested Users Table Data,UserId={}",adminId);
+
+        checkAdmin(adminId);
+
+        return userProfileRepository.findByAccountStatusAndIdNot(AccountStatusEnum.PENDING,adminId,pageable);
+    }
+
+    public void updateUserName(Long requestId,String userName)
+    {
+        log.info("fetching user detail for update username,UserId={}",requestId);
+        UserProfileEntity user=userProfileRepository.findById(requestId).
+        orElseThrow(()->{
+            log.warn("User Profile Not Found,Userid={}",requestId);
+            return new UserNotFoundException("User Not Found");
+        });
+        user.setUserName(userName);
+        userProfileRepository.save(user);
+    }
     
+    public void updateAccountStatus(Long adminId,Long targetId,String newStatus)
+    {
+        log.info("fetching user detail for update Account Status,adminId={},targetId={}",adminId,targetId);
+        checkAdmin(adminId);
+        UserProfileEntity user=userProfileRepository.findById(targetId).
+        orElseThrow(()->{
+            log.warn("Target User Profile Not Found,targetid={}",targetId);
+            return new UserNotFoundException("Target User Not Found");
+        });
+        log.info(
+        "Updating Account Status, targetId={}, Status {} to {}",
+        targetId,
+        user.getAccountStatus(),
+        newStatus
+        );
+        AccountStatusEnum newAccountStatus = AccountStatusEnum.valueOf(newStatus);
+        user.setAccountStatus(newAccountStatus);
+        userProfileRepository.save(user);
+
+    }
+
+    public void updateUserRequest(Long adminId,Long targetId,String action)
+    {
+        log.info("fetching user detail for update User Request Pending,adminId={},targetId={}",adminId,targetId);
+        checkAdmin(adminId);
+
+        UserProfileEntity user=userProfileRepository.findById(targetId).
+        orElseThrow(()->{
+            log.warn("Target User Profile Not Found,targetid={}",targetId);
+            return new UserNotFoundException("Target User Not Found");
+        });
+
+        if("ACCEPT".equals(action))
+        {
+        log.info("Accept User request");
+        user.setAccountStatus(AccountStatusEnum.ACTIVE);
+        userProfileRepository.save(user);
+        }
+        else if ("REJECT".equals(action))
+        {
+        log.info("Reject User request");
+        userProfileRepository.deleteById(targetId);
+        }
+    }
 }

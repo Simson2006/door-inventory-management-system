@@ -11,7 +11,7 @@ import lombok.Data;
 @Entity
 @Table(name="dimension")
 @Data
-public class Dimension {
+public class DimensionEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,25 +1,27 @@
 package com.doorinventory.door_inventory.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import lombok.Data;
 
 @Entity
-@Table(name="grade")
-public class Grade{
-    
+@Table(name="model")
+@Data
+public class ModelEntity{
+
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     Long id;
 
     @Column(nullable = false, length = 25)
-    private String gradeName;
+    private String modelName;    
 }
 
-/* CREATE TABLE grades (
+/* CREATE TABLE models (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    gradeName VARCHAR(25) NOT NULL
+    modelName VARCHAR(25) NOT NULL
 ); */

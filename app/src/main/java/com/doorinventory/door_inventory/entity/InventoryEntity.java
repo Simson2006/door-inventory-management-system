@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
     }
 )
 @Data
-public class Inventory {
+public class InventoryEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,15 +23,15 @@ public class Inventory {
 
     @ManyToOne
     @JoinColumn(name = "modelId", nullable = false)
-    private Model model;
+    private ModelEntity model;
 
     @ManyToOne
     @JoinColumn(name = "dimensionId", nullable = false)
-    private Dimension dimension;
+    private DimensionEntity dimension;
 
     @ManyToOne
     @JoinColumn(name = "gradeId", nullable = false)
-    private Grade grade;
+    private GradeEntity grade;
 
     @Column(nullable = false)
     private Integer stock = 0;
