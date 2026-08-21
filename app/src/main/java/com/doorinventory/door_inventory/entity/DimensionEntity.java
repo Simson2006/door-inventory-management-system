@@ -18,10 +18,10 @@ public class DimensionEntity{
     Long id;
 
     @Column(name = "dimensionWidth", nullable = false)
-    private Double width;
+    private Double dimensionWidth;
 
     @Column(name = "dimensionHeight", nullable = false)
-    private Double height;
+    private Double dimensionHeight;
 }
 
 /*

@@ -1,7 +1,6 @@
 package com.doorinventory.door_inventory.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import com.doorinventory.door_inventory.entity.enums.AccountStatusEnum;
 import com.doorinventory.door_inventory.repository.UserProfileRepository;
 import com.doorinventory.door_inventory.entity.UserProfileEntity;

@@ -35,10 +35,6 @@ public class InventoryEntity{
 
     @Column(nullable = false)
     private Integer stock = 0;
-
-    private Integer lastStockChange = 0;
-
-    private LocalDateTime updatedAt;
 }
 
 /* CREATE TABLE inventory (
@@ -47,9 +43,6 @@ public class InventoryEntity{
     gradeId BIGINT NOT NULL,
     dimensionId BIGINT NOT NULL,
     stock INT NOT NULL,
-    lastStockChange INT NOT NULL,
-    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    UNIQUE KEY unique_model_dimension_grade (modelId, dimensionId, gradeId),
     FOREIGN KEY (modelId) REFERENCES models(id),
     FOREIGN KEY (gradeId) REFERENCES grades(id),
     FOREIGN KEY (dimensionId) REFERENCES dimensions(id)

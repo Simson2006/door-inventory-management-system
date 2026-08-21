@@ -1,5 +1,7 @@
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\controller\InventoryTransactionController.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\controller\UserProfileController.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\DoorInventoryApplication.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\dto\PurchaseStockRequest.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\entity\DimensionEntity.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\entity\enums\AccountStatusEnum.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\entity\enums\TransactionTypeEnum.java
@@ -12,5 +14,11 @@ D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\j
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\exception\GlobalExceptionHandler.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\exception\UserNotFoundException.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\PageController.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\repository\DimensionRepository.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\repository\GradeRepository.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\repository\InventoryRepository.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\repository\ModelRepository.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\repository\TransactionRepository.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\repository\UserProfileRepository.java
+D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\service\InventoryTransactionService.java
 D:\Sim_Projects\.vscode\Projects\door-inventory-management-system\app\src\main\java\com\doorinventory\door_inventory\service\UserProfileService.java
