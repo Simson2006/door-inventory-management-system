@@ -4,16 +4,24 @@ import com.doorinventory.door_inventory.entity.enums.TransactionTypeEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "transaction")
+@Table(
+    name = "transaction",
+    uniqueConstraints = {
+        @UniqueConstraint(
+            name = "uq_transaction_bill_id",
+            columnNames = "billId"
+        )
+    }
+)
 @Data
 public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //transaction id
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -38,39 +46,16 @@ public class TransactionEntity {
     @Column(nullable = false)
     private Integer quantity;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50,unique = true)
     private String billId;
 
-    @Column(length = 500)
+    @Column(length = 400)
     private String notes;
 
     @Column(nullable = false)
-    private LocalDateTime transactionDate;
+    private LocalDate transactionDate;
+
+    @Column(nullable=false)
+    private Long updateBy;
 }
 
-/*
-CREATE TABLE transaction (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-
-    transaction_type ENUM('PURCHASE', 'SALE') NOT NULL,
-
-    inventory_id BIGINT NOT NULL,
-
-    person_name VARCHAR(150) NOT NULL,
-
-    mobile_number VARCHAR(15) NOT NULL,
-
-    quantity INT NOT NULL,
-
-    bill_id VARCHAR(50) NOT NULL,
-
-    transaction_date DATE NOT NULL,
-
-    notes VARCHAR(500),
-
-    CONSTRAINT fk_transaction_inventory
-        FOREIGN KEY (inventory_id)
-        REFERENCES inventory(id)
-);
-
-*/

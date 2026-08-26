@@ -1,9 +1,9 @@
 package com.doorinventory.door_inventory.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 
 @Entity
 @Table(
@@ -33,8 +33,9 @@ public class InventoryEntity{
     @JoinColumn(name = "gradeId", nullable = false)
     private GradeEntity grade;
 
-    @Column(nullable = false)
-    private Integer stock = 0;
+    @PositiveOrZero(message = "Stock cannot be negative")
+    @Column(nullable = false, columnDefinition = "INT UNSIGNED")
+    private Integer stock;
 }
 
 /* CREATE TABLE inventory (

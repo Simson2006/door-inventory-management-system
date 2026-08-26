@@ -4,12 +4,13 @@ import org.springframework.stereotype.Service;
 import com.doorinventory.door_inventory.entity.enums.AccountStatusEnum;
 import com.doorinventory.door_inventory.repository.UserProfileRepository;
 import com.doorinventory.door_inventory.entity.UserProfileEntity;
-import com.doorinventory.door_inventory.exception.UserNotFoundException;
+import com.doorinventory.door_inventory.exception.ResourceNotFoundException;
 import com.doorinventory.door_inventory.exception.AdminAccessDeniedException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.List;
 @Service
 public class UserProfileService{
 
@@ -26,7 +27,7 @@ public class UserProfileService{
         return userProfileRepository.findById(id)
         .orElseThrow(() -> {
             log.error("User Profile Not Found,UserId={}",id);
-            return new UserNotFoundException("User Not Found");
+            return new ResourceNotFoundException("User not found");
         });
     }
 
@@ -35,7 +36,7 @@ public class UserProfileService{
         String isAdmin = userProfileRepository.findUserRoleById(adminId)
                 .orElseThrow(() -> {
                     log.warn("User Profile Not Found, UserId={}",adminId);
-                    return new UserNotFoundException("User Not Found");
+                    return new ResourceNotFoundException("User not found");
                 });
 
         if (!"ADMIN".equals(isAdmin)) {
@@ -48,8 +49,8 @@ public class UserProfileService{
 
         log.info("fetching Approved Users Table Data by,Userid={}",adminId);
         checkAdmin(adminId);
-        return userProfileRepository.findByAccountStatusAndIdNot(
-                AccountStatusEnum.ACTIVE,
+        return userProfileRepository.findByAccountStatusInAndIdNot(
+                List.of(AccountStatusEnum.ACTIVE,AccountStatusEnum.SUSPENDED),
                 adminId,
                 pageable
         );
@@ -61,6 +62,7 @@ public class UserProfileService{
 
         checkAdmin(adminId);
 
+
         return userProfileRepository.findByAccountStatusAndIdNot(AccountStatusEnum.PENDING,adminId,pageable);
     }
 
@@ -70,7 +72,7 @@ public class UserProfileService{
         UserProfileEntity user=userProfileRepository.findById(requestId).
         orElseThrow(()->{
             log.warn("User Profile Not Found,Userid={}",requestId);
-            return new UserNotFoundException("User Not Found");
+            return new ResourceNotFoundException("User Not Found");
         });
         user.setUserName(userName);
         userProfileRepository.save(user);
@@ -83,7 +85,7 @@ public class UserProfileService{
         UserProfileEntity user=userProfileRepository.findById(targetId).
         orElseThrow(()->{
             log.warn("Target User Profile Not Found,targetid={}",targetId);
-            return new UserNotFoundException("Target User Not Found");
+            return new ResourceNotFoundException("Target User Not Found");
         });
         log.info(
         "Updating Account Status, targetId={}, Status {} to {}",
@@ -105,7 +107,7 @@ public class UserProfileService{
         UserProfileEntity user=userProfileRepository.findById(targetId).
         orElseThrow(()->{
             log.warn("Target User Profile Not Found,targetid={}",targetId);
-            return new UserNotFoundException("Target User Not Found");
+            return new ResourceNotFoundException("Target User Not Found");
         });
 
         if("ACCEPT".equals(action))

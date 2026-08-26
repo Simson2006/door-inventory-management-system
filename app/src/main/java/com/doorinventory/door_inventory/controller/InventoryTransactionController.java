@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import com.doorinventory.door_inventory.dto.PurchaseStockRequest;
 import com.doorinventory.door_inventory.service.InventoryTransactionService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/updateinventory")
 public class InventoryTransactionController{
@@ -17,10 +19,9 @@ public class InventoryTransactionController{
 
         this.inventoryTransactionService = inventoryTransactionService;
     }
-
     @PostMapping("/purchase")
     public ResponseEntity<?> purchaseStock(
-            @RequestBody PurchaseStockRequest request) {
+            @Valid @RequestBody PurchaseStockRequest request) {
 
         inventoryTransactionService.purchaseStock(request);
 

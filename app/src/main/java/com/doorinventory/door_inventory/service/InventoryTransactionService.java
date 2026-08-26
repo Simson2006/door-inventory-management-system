@@ -2,13 +2,16 @@ package com.doorinventory.door_inventory.service;
 
 import org.springframework.stereotype.Service;
 
+import com.doorinventory.door_inventory.entity.DimensionEntity;
+import com.doorinventory.door_inventory.entity.GradeEntity;
 import com.doorinventory.door_inventory.entity.InventoryEntity;
+import com.doorinventory.door_inventory.entity.ModelEntity;
 import com.doorinventory.door_inventory.entity.TransactionEntity;
 import com.doorinventory.door_inventory.entity.enums.TransactionTypeEnum;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.doorinventory.door_inventory.exception.UserNotFoundException;
+import com.doorinventory.door_inventory.exception.ResourceNotFoundException;
 import com.doorinventory.door_inventory.repository.InventoryRepository;
 import com.doorinventory.door_inventory.repository.TransactionRepository;
 import com.doorinventory.door_inventory.repository.ModelRepository;
@@ -43,40 +46,41 @@ public class InventoryTransactionService {
 
     if (!userProfileRepository.existsById(userId)) {
         log.warn("Purchase Stock attempted by unknown userId={}", userId);
-        throw new UserNotFoundException("User not found");
+        throw new ResourceNotFoundException(String.format("UserId %d not found",userId));
     }
-}
-    private Long getModelId(Long userId,String modelName) {
+    }
+
+    private ModelEntity getModel(Long userId,String modelName) {
         return modelRepository
-            .findIdByModelName(modelName)
+            .findByModelName(modelName)
             .orElseThrow(() -> {
                 log.warn(
                     "Model not found, userId={}, modelName={}",
                     userId,
                     modelName
                 );
-                return new RuntimeException("Model not found");
+                return new ResourceNotFoundException(String.format("Model '%s' not found",modelName));
             });  
     }   
 
-    private Long getGradeId(Long userId, String gradeName) {
+    private GradeEntity getGrade(Long userId, String gradeName) {
 
         return gradeRepository
-                .findIdByGradeName(gradeName)
+                .findByGradeName(gradeName)
                 .orElseThrow(() -> {
                     log.warn(
                         "Grade not found, userId={}, gradeName={}",
                         userId,
                         gradeName
                     );
-                    return new RuntimeException("Grade not found");
+                    return new ResourceNotFoundException(String.format("Grade'%s'not found",gradeName));
                 });
     }
 
-    private Long getDimensionId(Long userId, Double width, Double height) {
+    private DimensionEntity getDimension(Long userId, Double width, Double height) {
 
         return dimensionRepository
-                .findIdByWidthAndHeight(width, height)
+                .findByDimensionWidthAndDimensionHeight(width, height)
                 .orElseThrow(() -> {
                     log.warn(
                         "Dimension not found, userId={}, width={}, height={}",
@@ -84,60 +88,80 @@ public class InventoryTransactionService {
                         width,
                         height
                     );
-                    return new RuntimeException("Dimension not found");
+                    return new ResourceNotFoundException(
+                    String.format("Dimension %.2f x %.2f not found",
+                        width,
+                        height));
                 });
     }
 
     private InventoryEntity updateInventory(
-            Long modelId,
-            Long gradeId,
-            Long dimensionId,
-            Integer quantity) {
+        ModelEntity model,
+        GradeEntity grade,
+        DimensionEntity dimension,
+        Integer quantity) {
 
+        Long modelId=model.getId(),gradeId=grade.getId(),dimensionId=dimension.getId();
         InventoryEntity inventory = inventoryRepository
                 .findByModelIdAndGradeIdAndDimensionId(
                         modelId,
                         gradeId,
                         dimensionId
                 )
-                .orElseThrow(() ->{
-                     log.warn("Inventory not found, modelId={}, gradeId={}, dimensionId={}",
+                .orElseGet(() -> {
+
+                    log.info(
+                        "Inventory combination not found. Creating new inventory, " +
+                        "modelId={}, gradeId={}, dimensionId={}",
                         modelId,
                         gradeId,
                         dimensionId
                     );
-                    return new RuntimeException("Inventory not found");
-                    });
 
-        int oldStock=inventory.getStock(),newStock=oldStock+quantity;
-        inventory.setStock(newStock);
+                    InventoryEntity newInventory = new InventoryEntity();
 
-        inventoryRepository.save(inventory);
-        log.info(
-            "Inventory stock updated, inventoryId={}, oldStock={}, addedQuantity={}, newStock={}",
-            inventory.getId(),
-            oldStock,
-            quantity,
-            newStock
-        );
-        return inventory;
+                    newInventory.setModel(model);
+                    newInventory.setGrade(grade);
+                    newInventory.setDimension(dimension);
+                    newInventory.setStock(quantity);
+
+                    return newInventory;
+                });
+
+        if (inventory.getId() != null) {
+
+            int oldStock = inventory.getStock();
+            int newStock = oldStock + quantity;
+
+            inventory.setStock(newStock);
+
+            log.info(
+                "Inventory stock updated, inventoryId={}, oldStock={}, " +
+                "addedQuantity={}, newStock={}",
+                inventory.getId(),
+                oldStock,
+                quantity,
+                newStock
+            );
+        }
+        return inventoryRepository.save(inventory);
     }
-
     private void saveTransaction(
         PurchaseStockRequest request,
         InventoryEntity inventory) {
 
         TransactionEntity transaction = new TransactionEntity();
 
+        transaction.setUpdateBy(request.getUserId());;
         transaction.setInventory(inventory);
         transaction.setBillId(request.getBillId());
         transaction.setEmail(request.getEmail());
         transaction.setLocation(request.getLocation());
         transaction.setName(request.getName());
-        transaction.setNotes(request.getNotes());
+        if (request.getNotes() != null && request.getNotes().isBlank()) 
+            request.setNotes(null);
         transaction.setPhone(request.getPhone());
         transaction.setQuantity(request.getQuantity());
-
         transaction.setTransactionDate(
                 request.getTransactionDate()
         );
@@ -172,15 +196,15 @@ public class InventoryTransactionService {
 
         checkUser(userId);
 
-        Long modelId = getModelId(
+        ModelEntity model = getModel(
                 userId,
                 request.getModelName()
         );
-        Long gradeId = getGradeId(
+        GradeEntity grade = getGrade(
                 userId,
                 request.getGradeName()
         );
-        Long dimensionId = getDimensionId(
+        DimensionEntity dimension = getDimension(
                 userId,
                 request.getWidth(),
                 request.getHeight()
@@ -188,9 +212,9 @@ public class InventoryTransactionService {
 
         InventoryEntity inventory =
                 updateInventory(
-                        modelId,
-                        gradeId,
-                        dimensionId,
+                        model,
+                        grade,
+                        dimension,
                         request.getQuantity()
                 );
         saveTransaction(request, inventory);
