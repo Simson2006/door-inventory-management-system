@@ -13,6 +13,7 @@
 /home/simbu/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/entity/enums/TransactionTypeEnum.java
 /home/simbu/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/exception/AdminAccessDeniedException.java
 /home/simbu/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/exception/GlobalExceptionHandler.java
+/home/simbu/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/exception/InsufficientStockException.java
 /home/simbu/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/exception/ResourceNotFoundException.java
 /home/simbu/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/repository/DimensionRepository.java
 /home/simbu/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/repository/GradeRepository.java

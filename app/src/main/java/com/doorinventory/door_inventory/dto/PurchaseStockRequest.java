@@ -2,6 +2,8 @@ package com.doorinventory.door_inventory.dto;
 
 import java.time.LocalDate;
 
+import com.doorinventory.door_inventory.entity.enums.TransactionTypeEnum;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -72,5 +74,15 @@ public class PurchaseStockRequest {
         message = "Invalid Phone Number")
     private String phone;
 
+    public TransactionTypeEnum  transactionType;
+
     private LocalDate transactionDate=LocalDate.now();
+
+    public TransactionTypeEnum getTransactionType() {
+    return transactionType;
+    }
+
+    public void setTransactionType(TransactionTypeEnum transactionType) {
+        this.transactionType = transactionType;
+    }
 }

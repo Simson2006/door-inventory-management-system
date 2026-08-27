@@ -11,6 +11,8 @@ import com.doorinventory.door_inventory.entity.enums.TransactionTypeEnum;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.doorinventory.door_inventory.exception.InsufficientStockException;
 import com.doorinventory.door_inventory.exception.ResourceNotFoundException;
 import com.doorinventory.door_inventory.repository.InventoryRepository;
 import com.doorinventory.door_inventory.repository.TransactionRepository;
@@ -99,7 +101,8 @@ public class InventoryTransactionService {
         ModelEntity model,
         GradeEntity grade,
         DimensionEntity dimension,
-        Integer quantity) {
+        Integer quantity,
+        TransactionTypeEnum transactionType) {
 
         Long modelId=model.getId(),gradeId=grade.getId(),dimensionId=dimension.getId();
         InventoryEntity inventory = inventoryRepository
@@ -109,7 +112,19 @@ public class InventoryTransactionService {
                         dimensionId
                 )
                 .orElseGet(() -> {
-
+                    
+                    if(transactionType==TransactionTypeEnum.SELL)
+                    {
+                        log.info(
+                        "Inventory combination not found." +
+                        "modelId={}, gradeId={}, dimensionId={}",
+                        modelId,
+                        gradeId,
+                        dimensionId
+                        );
+                    throw new ResourceNotFoundException("Inventory combination not found.");
+                    }
+                    else {
                     log.info(
                         "Inventory combination not found. Creating new inventory, " +
                         "modelId={}, gradeId={}, dimensionId={}",
@@ -123,18 +138,36 @@ public class InventoryTransactionService {
                     newInventory.setModel(model);
                     newInventory.setGrade(grade);
                     newInventory.setDimension(dimension);
-                    newInventory.setStock(quantity);
+                    newInventory.setStock(0);
 
-                    return newInventory;
+                    return newInventory;}
                 });
+            
+            int stockChange=quantity;
+            if(transactionType==TransactionTypeEnum.SELL)
+                stockChange=-quantity;
 
-        if (inventory.getId() != null) {
-
+            
             int oldStock = inventory.getStock();
-            int newStock = oldStock + quantity;
+            int newStock = oldStock + stockChange;
+            
+            if(newStock<0)
+            {
+                  log.warn(
+                "Insufficient stock. inventoryId={}, available={}, requested={}",
+                inventory.getId(),
+                oldStock,
+                quantity
+            );
+            throw new InsufficientStockException(
+                String.format(
+                        "Insufficient stock. Available: %d, requested: %d",
+                        oldStock,
+                        quantity
+                ));
+            }
 
             inventory.setStock(newStock);
-
             log.info(
                 "Inventory stock updated, inventoryId={}, oldStock={}, " +
                 "addedQuantity={}, newStock={}",
@@ -143,9 +176,10 @@ public class InventoryTransactionService {
                 quantity,
                 newStock
             );
-        }
         return inventoryRepository.save(inventory);
     }
+
+
     private void saveTransaction(
         PurchaseStockRequest request,
         InventoryEntity inventory) {
@@ -158,20 +192,19 @@ public class InventoryTransactionService {
         transaction.setEmail(request.getEmail());
         transaction.setLocation(request.getLocation());
         transaction.setName(request.getName());
+
         if (request.getNotes() != null && request.getNotes().isBlank()) 
             request.setNotes(null);
+
         transaction.setPhone(request.getPhone());
         transaction.setQuantity(request.getQuantity());
-        transaction.setTransactionDate(
-                request.getTransactionDate()
-        );
+        transaction.setTransactionDate(request.getTransactionDate());
+        transaction.setType(request.getTransactionType());
 
-        transaction.setType(
-                TransactionTypeEnum.PURCHASE
-        );
         transactionRepository.save(transaction);
         log.info(
-            "Purchase transaction saved, userId={}, transactionId={}, inventoryId={}, quantity={}",
+            "{} transaction saved, userId={}, transactionId={}, inventoryId={}, quantity={}",
+            request.getTransactionType(),
             request.getUserId(),
             transaction.getId(),
             inventory.getId(),
@@ -180,12 +213,13 @@ public class InventoryTransactionService {
     }
 
     @Transactional
-    public void purchaseStock(PurchaseStockRequest request) {
+    public void updateStock(PurchaseStockRequest request) {
 
         Long userId = request.getUserId();
 
         log.info(
-            "Processing stock purchase, userId={}, modelName={}, gradeName={}, width={}, height={}, quantity={}",
+            "Processing update stock type={}, userId={}, modelName={}, gradeName={}, width={}, height={}, quantity={}",
+            request.getTransactionType(),
             userId,
             request.getModelName(),
             request.getGradeName(),
@@ -215,7 +249,8 @@ public class InventoryTransactionService {
                         model,
                         grade,
                         dimension,
-                        request.getQuantity()
+                        request.getQuantity(),
+                        request.getTransactionType()
                 );
         saveTransaction(request, inventory);
     }

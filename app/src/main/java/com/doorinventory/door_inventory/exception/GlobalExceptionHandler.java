@@ -67,5 +67,11 @@ public class GlobalExceptionHandler {
                 .body("Database constraint violation.");
         }
 
+     @ExceptionHandler(InsufficientStockException.class)
+     public ResponseEntity<String> InsufficientStockExceptionHandler(InsufficientStockException e)
+     {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+     }
+
         
 }

@@ -4,6 +4,7 @@ com/doorinventory/door_inventory/entity/UserProfileEntity.class
 com/doorinventory/door_inventory/controller/UserProfileController.class
 com/doorinventory/door_inventory/DoorInventoryApplication.class
 com/doorinventory/door_inventory/repository/UserProfileRepository.class
+com/doorinventory/door_inventory/exception/InsufficientStockException.class
 com/doorinventory/door_inventory/controller/InventoryTransactionController.class
 com/doorinventory/door_inventory/dto/PurchaseStockRequest.class
 com/doorinventory/door_inventory/entity/InventoryEntity.class
