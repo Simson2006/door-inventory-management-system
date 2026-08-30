@@ -10,7 +10,7 @@ import com.doorinventory.door_inventory.service.InventoryTransactionService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/updateinventory")
+@RequestMapping("/updateinventory")
 public class InventoryTransactionController{
 
     private final InventoryTransactionService inventoryTransactionService;

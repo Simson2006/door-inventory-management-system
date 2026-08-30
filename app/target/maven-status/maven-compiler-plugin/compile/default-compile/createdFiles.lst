@@ -1,5 +1,7 @@
+com/doorinventory/door_inventory/controller/ModelController.class
 com/doorinventory/door_inventory/repository/DimensionRepository.class
 com/doorinventory/door_inventory/entity/enums/TransactionTypeEnum.class
+com/doorinventory/door_inventory/exception/ResourceAlreadyExistsException.class
 com/doorinventory/door_inventory/entity/UserProfileEntity.class
 com/doorinventory/door_inventory/controller/UserProfileController.class
 com/doorinventory/door_inventory/DoorInventoryApplication.class
@@ -10,7 +12,10 @@ com/doorinventory/door_inventory/dto/PurchaseStockRequest.class
 com/doorinventory/door_inventory/entity/InventoryEntity.class
 com/doorinventory/door_inventory/PageController.class
 com/doorinventory/door_inventory/repository/ModelRepository.class
+com/doorinventory/door_inventory/service/CrudService.class
 com/doorinventory/door_inventory/exception/GlobalExceptionHandler.class
+com/doorinventory/door_inventory/service/ModelService.class
+com/doorinventory/door_inventory/exception/ResourceInUseException.class
 com/doorinventory/door_inventory/entity/DimensionEntity.class
 com/doorinventory/door_inventory/entity/GradeEntity.class
 com/doorinventory/door_inventory/repository/GradeRepository.class

@@ -18,6 +18,23 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    public ResponseEntity<String> ResourceAlreadyExistsExceptionHandler(
+                ResourceAlreadyExistsException e) {
+
+         return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+        }
+
+    @ExceptionHandler(ResourceInUseException.class)
+    public ResponseEntity<String> ResourceInUseExceptionHandler(ResourceInUseException e)
+    {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
+
     @ExceptionHandler(AdminAccessDeniedException.class)
     public ResponseEntity<String> AdminAccessDeniedExceptionHandler(AdminAccessDeniedException e) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());

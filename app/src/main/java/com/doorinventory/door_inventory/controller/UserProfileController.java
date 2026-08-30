@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
-
 @RestController
-@RequestMapping("/api/profile")
+@RequestMapping("/profile")
 public class UserProfileController {
     
     private final UserProfileService userProfileService;
