@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface GradeRepository extends JpaRepository<GradeEntity,Long> {
     
     Optional<GradeEntity> findByGradeName(String gradeName);
+    boolean existsByGradeName(String gradeName);
 }

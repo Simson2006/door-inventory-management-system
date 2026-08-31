@@ -7,5 +7,5 @@ public interface ModelRepository extends JpaRepository<ModelEntity,Long> {
 
 
     Optional<ModelEntity> findByModelName(String modelName);
-    boolean existsByModelName(String modelName);
+    boolean existsByModelName(String modelName); // find is model exsist
 }

@@ -1,8 +1,11 @@
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/DoorInventoryApplication.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/PageController.java
+/run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/controller/GradeController.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/controller/InventoryTransactionController.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/controller/ModelController.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/controller/UserProfileController.java
+/run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/dto/GradeRequest.java
+/run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/dto/ModelRequest.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/dto/PurchaseStockRequest.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/entity/DimensionEntity.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/entity/GradeEntity.java
@@ -25,6 +28,7 @@
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/repository/TransactionRepository.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/repository/UserProfileRepository.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/service/CrudService.java
+/run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/service/GradeService.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/service/InventoryTransactionService.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/service/ModelService.java
 /run/media/simbu/LinuxData/Projects/webApps/door-inventory-management-system/app/src/main/java/com/doorinventory/door_inventory/service/UserProfileService.java

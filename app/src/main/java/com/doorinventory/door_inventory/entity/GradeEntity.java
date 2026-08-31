@@ -17,11 +17,11 @@ public class GradeEntity{
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false, length = 25)
+    @Column(nullable = false, length = 25,unique = true)
     private String gradeName;
 }
 
 /* CREATE TABLE grades (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    gradeName VARCHAR(25) NOT NULL
+    gradeName VARCHAR(25) NOT NULL UNIQUE 
 ); */

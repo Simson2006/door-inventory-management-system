@@ -11,4 +11,6 @@ public interface InventoryRepository extends JpaRepository<InventoryEntity,Long>
         Long dimensionId
 );
     boolean existsByModelId(Long modelId);
+    boolean existsByGradeId(Long gradeId);
+
 }

@@ -33,7 +33,7 @@ async function loadProfile() {
 
     try {
 
-        const profileApi = `/api/profile/${USER_ID}`;
+        const profileApi = `/profile/${USER_ID}`;
 
         console.log("REQUESTING:", profileApi);
 
@@ -169,7 +169,7 @@ const PROFILE_ACTIONS = {
             try {
 
                 const response = await fetch(
-                    `/api/profile/${USER_ID}/updateusername`,
+                    `/profile/${USER_ID}/updateusername`,
                     {
                         method: "POST",
 
@@ -475,7 +475,7 @@ async function loadApprovalRequests() {
 
 
         const api =
-            `/api/profile/${USER_ID}/approvalrequestuser` +
+            `/profile/${USER_ID}/approvalrequestuser` +
             `?page=${backendPage}&size=${PAGE_SIZE}`;
 
 
@@ -555,7 +555,7 @@ async function loadApprovedUsers() {
 
 
         const api =
-            `/api/profile/${USER_ID}/approveduser` +
+            `/profile/${USER_ID}/approveduser` +
             `?page=${backendPage}&size=${PAGE_SIZE}`;
 
 
@@ -1062,7 +1062,7 @@ async function handleApprove(id, btn) {
 
         const response =
             await fetch(
-                `/api/profile/${USER_ID}/updateuserrequest/${id}`,
+                `/profile/${USER_ID}/updateuserrequest/${id}`,
                 {
                     method: "POST",
                     headers: {
@@ -1118,7 +1118,7 @@ async function handleReject(id) {
     try {
 
         const response = await fetch(
-            `/api/profile/${USER_ID}/updateuserrequest/${id}`,
+            `/profile/${USER_ID}/updateuserrequest/${id}`,
             {
                 method: "POST",
                 headers: {
@@ -1173,7 +1173,7 @@ async function handleStatusToggle(targetId) {
     try {
 
         const response = await fetch(
-            `/api/profile/${USER_ID}/updateaccountstatus/${targetId}`,
+            `/profile/${USER_ID}/updateaccountstatus/${targetId}`,
             {
                 method: "POST",
                 headers: {
