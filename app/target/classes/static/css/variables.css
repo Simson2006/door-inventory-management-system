@@ -1,0 +1,31 @@
+/* =========================================================
+   GLOBAL CSS VARIABLES
+   Shared design tokens used across every stylesheet.
+   Reconstructed file — this was missing from the project;
+   tweak any value below to match your original design.
+========================================================= */
+
+:root {
+    /* Colors */
+    --bg: #f5f6f8;
+    --white: #ffffff;
+    --green: #2f6a4c;
+    --yellow: #d9a441;
+    --brown: #8b5e3c;
+
+    /* Layout */
+    --sidebar-width: 260px;
+    --topbar-height: 90px;
+    --main-content-padding: 30px;
+
+    /* Shape */
+    --card-radius: 12px;
+    --box-radius: 10px;
+    --badge-radius: 20px;
+
+    /* Effects */
+    --card-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+
+    /* Typography */
+    --section-title-font: 'Poppins', Arial, sans-serif;
+}

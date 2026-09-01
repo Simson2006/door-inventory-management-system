@@ -1,0 +1,248 @@
+/* =========================================================
+   TRANSACTION HISTORY PAGE
+   Page-specific styling only. Reuses the .table-card /
+   .table-card-title look from dashboard.css so this page
+   stays visually consistent with the rest of the app.
+========================================================= */
+
+main {
+    padding: 35px;
+}
+
+.transactions-page {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.last-updated {
+    color: #666;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* =========================
+        FILTER BAR
+========================= */
+
+.tx-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 14px;
+
+    background: var(--white);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 18px 20px;
+}
+
+.tx-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tx-filter label {
+    font-size: .72rem;
+    font-weight: 600;
+    color: var(--green);
+    font-family: 'Poppins', sans-serif;
+}
+
+.tx-filter select,
+.tx-filter input[type="date"] {
+    border: 1px solid #ddd;
+    border-radius: var(--box-radius);
+    padding: 9px 12px;
+    font-size: .82rem;
+    font-family: inherit;
+    color: #333;
+    background: #fafafa;
+    outline: none;
+    transition: .2s;
+}
+
+.tx-filter select:focus,
+.tx-filter input[type="date"]:focus {
+    border-color: var(--brown);
+    box-shadow: 0 0 6px rgba(178,108,69,.2);
+}
+
+.tx-search {
+    flex: 1 1 220px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    border: 1px solid #ddd;
+    border-radius: var(--box-radius);
+    padding: 0 12px;
+    background: #fafafa;
+}
+
+.tx-search svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+}
+
+.tx-search input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 0;
+    font-size: .85rem;
+    font-family: inherit;
+    color: #333;
+    outline: none;
+}
+
+.tx-clear-btn {
+    align-self: center;
+    padding: 9px 18px;
+    border: 1.5px solid var(--brown);
+    border-radius: var(--box-radius);
+    background: transparent;
+    color: var(--brown);
+    font-family: 'Poppins', sans-serif;
+    font-size: .78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .2s;
+    white-space: nowrap;
+}
+
+.tx-clear-btn:hover {
+    background: var(--brown);
+    color: #fff;
+}
+
+/* =========================
+        TABLE CARD
+========================= */
+
+.table-card {
+    background: var(--white);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+.table-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--section-title-font);
+    font-size: 1rem;
+    color: var(--brown);
+}
+
+.table-card-title .card-icon {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+}
+
+.tx-count {
+    margin-left: auto;
+    font-size: .74rem;
+    font-weight: 600;
+    color: #888;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tx-table-scroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tx-table {
+    width: 100%;
+    min-width: 780px;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tx-table thead tr {
+    background: #fdf6e3;
+}
+
+.tx-table th,
+.tx-table td {
+    padding: 11px 12px;
+    text-align: left;
+    font-size: .78rem;
+    white-space: nowrap;
+}
+
+.tx-table th {
+    color: var(--brown);
+    font-weight: 600;
+}
+
+.tx-table td {
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tx-table td.tx-notes {
+    white-space: normal;
+    max-width: 220px;
+    color: #666;
+}
+
+.tx-type-pill {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: var(--badge-radius);
+    font-size: .7rem;
+    font-weight: 600;
+}
+
+.tx-type-pill.purchase {
+    background: #e3f0e8;
+    color: var(--green);
+}
+
+.tx-type-pill.sale {
+    background: #fbe2e0;
+    color: #c0392b;
+}
+
+.tx-empty {
+    text-align: center;
+    padding: 30px 0;
+    color: #888;
+    font-size: .85rem;
+}
+
+/* =========================
+        RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    main {
+        padding: 20px;
+    }
+
+    .tx-filters {
+        padding: 16px;
+    }
+
+    .tx-clear-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+
+    main {
+        padding: 15px;
+    }
+}
